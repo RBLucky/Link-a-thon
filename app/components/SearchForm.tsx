@@ -14,7 +14,11 @@ const SearchForm = () => {
         />
 
         <div className="flex gap-2">
-            {query && (<SearchFormReset />)}
+            {query && <SearchFormReset />}
+
+            <button type="submit" className="search-btn text-white">
+            🔎
+            </button>
         </div>
     </Form>
   )
