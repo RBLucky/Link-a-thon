@@ -13,25 +13,39 @@ const Navbar = async () => {
                 <Image src="/logo.png" alt="link-a-thon logo" width={40} height={10} />
             </Link>
 
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-5 text-black">
                 {session && session?.user ? (
                     <>
                       <Link href="/project/create">
                         <span>Create</span>
                       </Link>
 
-                      <button onClick={signOut}>
-                        <span>Logout</span>
-                      </button>
+                      <form action={ async() => {
+                        "use server";
+
+                        await signOut({ redirectTo: "/" });
+                        }}>
+                        
+                        <button type="submit">
+                            Logout
+                        </button>
+                      </form>
 
                       <Link href={`/user/${session?.id}`}>
                         <span>{session?.user?.name}</span>
                       </Link>
                     </>
                 ) : (
-                    <button onClick={signIn(provider: 'github')}>
-                        <span>Login</span>
-                    </button>
+                    <form action={ async () => {
+                        "use server";
+
+                        await signIn('github')
+                        }}>
+                        
+                        <button type="submit">
+                            Login
+                        </button>
+                    </form>
                 )}
             </div>
         </nav>
