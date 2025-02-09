@@ -1,3 +1,5 @@
+import SearchForm from "./SearchForm";
+
 const Header = () => {
   return (
     <>
@@ -5,6 +7,8 @@ const Header = () => {
         <h1 className="heading">Pitch Your Project, <br /> Connect With Talent</h1>
 
         <p className="sub-heading !max-w-3xl">Showcase Ideas, Join a Project, and Get Noticed in Hackathons</p>
+
+        <SearchForm />
       </section>
     </>
   )
