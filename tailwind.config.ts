@@ -19,7 +19,10 @@ const config: Config = {
                     DEFAULT: "#EE2B69",
                 },
                 secondary: "#FBE843",
-                tertiary: "#2E5A88",
+                tertiary: {
+                    "100": "#EDF6FF",
+                    DEFAULT:"#2E5A88"
+                },
                 black: {
                     "100": "#333333",
                     "200": "#141413",
@@ -30,6 +33,7 @@ const config: Config = {
                     "100": "#F7F7F7",
                     DEFAULT: "#FFFFFF",
                 },
+                grey: "#5C5C5C"
             },
             fontFamily: {
                 "work-sans": ["var(--font-work-sans)"],
@@ -42,7 +46,7 @@ const config: Config = {
             boxShadow: {
                 100: "2px 2px 0px 0px rgb(0, 0, 0)",
                 200: "2px 2px 0px 2px rgb(0, 0, 0)",
-                300: "2px 2px 0px 2px rgb(238, 43, 105)",
+                300: "2px 2px 0px 2px rgb(46, 90, 136)",
             },
         },
     },
