@@ -1,25 +1,13 @@
 import ProjectCard from "@/components/ProjectCard";
 import SearchForm from "@/components/SearchForm";
+import { client } from "@/sanity/lib/client";
+import { PROJECTS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }>}) {
 
   const query = (await searchParams).query;
 
-  const posts = [
-    {
-      _createdAt: new Date(),
-      views: 25,
-      author: {
-        _id: 1,
-        name: "Arthur Miller"
-      },
-      _id: 1,
-      description: "App to connect university students with healthcare facilities",
-      image: "https://miro.medium.com/v2/resize:fit:11996/1*e-f1YbS0FPmiDyXbDPlTUg.jpeg",
-      category: "Transport",
-      title: "miro"
-    },
-  ];
+  const posts = await client.fetch(PROJECTS_QUERY);
 
   return (
     <>
