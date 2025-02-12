@@ -1,13 +1,13 @@
 import ProjectCard, { ProjectCardType } from "@/components/ProjectCard";
 import SearchForm from "@/components/SearchForm";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/live";
 import { PROJECTS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }>}) {
 
   const query = (await searchParams).query;
 
-  const posts = await client.fetch(PROJECTS_QUERY);
+  const { data: posts } = await sanityFetch({ query: PROJECTS_QUERY })
 
   return (
     <>
