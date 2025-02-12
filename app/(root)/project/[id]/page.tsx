@@ -1,16 +1,20 @@
-import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import { PROJECT_QUERY } from "@/sanity/lib/queries";
+import { notFound } from "next/navigation";
 
+export const experimental_ppr = true;
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const id = (await params).id;
-  const { data: project } = await sanityFetch({ query: PROJECT_QUERY, params });
+
+  const post = await client.fetch(PROJECT_QUERY, { id });
+
+  if (!post) return notFound();
 
   return (
     <>
-        <h1>This is the project details: {PROJECT_QUERY}</h1>
-        <h1></h1>
+        <h1 className="text-3xl">{ post.title }</h1>
     </>
   )
 }
