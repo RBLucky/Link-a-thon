@@ -1,4 +1,4 @@
-import ProjectCard from "@/components/ProjectCard";
+import ProjectCard, { ProjectCardType } from "@/components/ProjectCard";
 import SearchForm from "@/components/SearchForm";
 import { client } from "@/sanity/lib/client";
 import { PROJECTS_QUERY } from "@/sanity/lib/queries";
@@ -26,7 +26,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
         
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
-            posts.map((post: ProjectCardType, index: number) => (
+            posts.map((post: ProjectCardType) => (
               <ProjectCard key={post?._id} post={post} />
             ))
           ) : (
