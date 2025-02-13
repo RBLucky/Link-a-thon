@@ -6,7 +6,6 @@ import { formatDate } from "@/lib/utils";
 export const experimental_ppr = true;
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
-
   const id = (await params).id;
 
   const post = await client.fetch(PROJECT_QUERY, { id });
@@ -15,21 +14,23 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <>
-    <section className="tertiary_container !min-h-[230px]">
-        <p className="tag">{ formatDate(post?._createdAt) }</p>
-        <h1 className="heading">{ post.title }</h1>
-        <p className="sub-heading !max-w-5xl">{ post.description }</p>
-    </section>
+      {/* Heading Section */}
+      <section className="tertiary_container !min-h-[230px] mb-0 p-0"> {/* Decreased margin */}
+        <p className="tag">{formatDate(post?._createdAt)}</p>
+        <h1 className="heading">{post.title}</h1>
+        <p className="sub-heading !max-w-5xl">{post.description}</p>
+      </section>
 
-    <section className="section_container">
-      <img
-        src={post.image}
-        alt={`${post.title}'s representative image`}
-        className="w-full h-auto rounded-xl"
-      />
-    </section>
+      {/* Image Section */}
+      <section className="section_container mt-[-20px]">
+        <img
+          src={post.image}
+          alt={`${post.title}'s representative image`}
+          className="w-full rounded-xl object-cover h-[calc(100vh-250px)] md:h-[calc(100vh-300px)] image-no-min" 
+        />
+      </section>
     </>
-  )
-}
+  );
+};
 
 export default Page;
