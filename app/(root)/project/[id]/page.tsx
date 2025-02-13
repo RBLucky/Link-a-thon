@@ -17,8 +17,17 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     <>
     <section className="tertiary_container !min-h-[230px]">
         <p className="tag">{ formatDate(post?._createdAt) }</p>
+        <h1 className="heading">{ post.title }</h1>
+        <p className="sub-heading !max-w-5xl">{ post.description }</p>
     </section>
-        <h1 className="text-3xl">{ post.title }</h1>
+
+    <section className="section_container">
+      <img
+        src={post.image}
+        alt={`${post.title}'s representative image`}
+        className="w-full h-auto rounded-xl"
+      />
+    </section>
     </>
   )
 }
