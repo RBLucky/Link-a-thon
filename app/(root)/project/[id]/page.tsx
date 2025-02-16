@@ -63,8 +63,14 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <h3 className="text-30-bold">Pitch</h3>
 
           {parsedContent ? (
-            <article />
-          ) : ()}
+            <article
+              dangerouslySetInnerHTML={{__html: parsedContent}}  
+            />
+          ) : (
+            <p className="no-result">
+              No Details Provided.
+            </p>
+          )}
 
         </div>
       </section>
