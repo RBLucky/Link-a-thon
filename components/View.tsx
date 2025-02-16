@@ -8,6 +8,18 @@ const View = async ({ id }: { id: string }) => {
     .withConfig({ useCdn: false })
     .fetch(PROJECT_VIEWS_QUERY, { id });
 
+  const formatNumber = (queryResult: number) => {
+    if (queryResult === 1) {
+        const viewInnerHTML = `${queryResult} View`;
+        
+        return viewInnerHTML;
+    } else {
+        const viewInnerHTML = `${queryResult} Views`;
+
+        return viewInnerHTML;
+    }
+  }
+
   return (
     <div className="view-container">
         <div className="absolute -top-2 -right-2">
@@ -15,11 +27,11 @@ const View = async ({ id }: { id: string }) => {
         </div>
 
         <p className="view-text">
-            <span className="font-black">{totalViews} Views</span>
+            <span className="font-black">{formatNumber(totalViews)}</span>
         </p>
 
     </div>
   )
 }
 
-export default View
+export default View;
