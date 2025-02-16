@@ -13,8 +13,11 @@
   },
   "packageManager": "npm@10.5.2",
   "overrides": {
-    "react": "$react",
+    "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "resolutions": {
+    "@vercel/turbopack": "latest"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
@@ -26,6 +29,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.475.0",
+    "markdown-it": "^14.1.0",
     "next": "^15.2.0-canary.56",
     "next-auth": "^5.0.0-beta.25",
     "next-sanity": "^9.8.56",
@@ -42,11 +46,12 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@sanity/types": "^3.75.0",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.1.6",
+    "eslint-config-next": "15.2.0-canary.56",
     "groq": "^3.75.0",
     "postcss": "^8",
     "sanity-codegen": "^0.9.8",
