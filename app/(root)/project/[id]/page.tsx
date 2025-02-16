@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import markdownit from "markdown-it";
 import { Divider } from "sanity/structure";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const md = markdownit();
 
@@ -74,7 +76,13 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           )}
 
         </div>
+
+        <hr className="divider" />
+        {/* TODO: You Might Love These */}
+
       </section>
+
+      <Suspense fallback={<Skeleton />}></Suspense>
     </>
   );
 };
