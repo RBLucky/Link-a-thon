@@ -8,6 +8,7 @@ import markdownit from "markdown-it";
 import { Divider } from "sanity/structure";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import View from "@/components/View";
 
 const md = markdownit();
 
@@ -82,7 +83,9 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
       </section>
 
-      <Suspense fallback={<Skeleton />}></Suspense>
+      <Suspense fallback={<Skeleton className="view_skeleton" />}>
+          <View id={id} />
+      </Suspense>
     </>
   );
 };
