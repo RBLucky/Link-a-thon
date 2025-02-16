@@ -4,9 +4,9 @@ import { client } from "@/sanity/lib/client";
 
 const View = async ({ id }: { id: string }) => {
   
-    const { views: totalViews } = await client
-        .withConfig({ useCdn: false })
-        .fetch(PROJECT_VIEWS_QUERY, { id });
+  const { views: totalViews } = await client
+    .withConfig({ useCdn: false })
+    .fetch(PROJECT_VIEWS_QUERY, { id });
 
   return (
     <div className="view-container">
