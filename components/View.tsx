@@ -1,6 +1,13 @@
+import { PROJECT_VIEWS_QUERY } from "@/sanity/lib/queries"
 import Ping from "./Ping"
+import { client } from "@/sanity/lib/client";
 
-const View = ({ id }: { id: string }) => {
+const View = async ({ id }: { id: string }) => {
+  
+    const { views: totalViews } = await client
+        .withConfig({ useCdn: false })
+        .fetch(PROJECT_VIEWS_QUERY, { id });
+
   return (
     <div className="view-container">
         <div className="absolute -top-2 -right-2">
@@ -8,8 +15,9 @@ const View = ({ id }: { id: string }) => {
         </div>
 
         <p className="view-text">
-            <span className="font-black"> 1 View</span>
+            <span className="font-black">{totalViews} Views</span>
         </p>
+
     </div>
   )
 }
