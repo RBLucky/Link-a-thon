@@ -28,4 +28,11 @@ export const PROJECT_QUERY = defineQuery(`*[_type == "project" && _id == $id][0]
   category,
   image,
   pitch
-}`);
+}`
+);
+
+export const PROJECT_VIEWS_QUERY = defineQuery(`*[_type == "startup" && _id == $id][0]{
+  _id,
+  views
+  }`
+);
