@@ -1,6 +1,6 @@
-const View = () => {
+const View = ({ id }: { id: string }) => {
   return (
-    <div>View</div>
+    <div className="view-container">View</div>
   )
 }
 
