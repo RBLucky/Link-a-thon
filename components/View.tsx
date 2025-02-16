@@ -20,6 +20,8 @@ const View = async ({ id }: { id: string }) => {
     }
   }
 
+  // TODO: Update number of views
+
   return (
     <div className="view-container">
         <div className="absolute -top-2 -right-2">
