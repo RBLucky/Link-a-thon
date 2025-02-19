@@ -66,8 +66,6 @@ const ProjectForm = () => {
     try {
       await formSchema.parseAsync(formValues);
 
-      console.log("Form submitted successfully:", formValues);
-
       const result = await createPitch(formData, pitch);
 
       if (result.status === "SUCCESS") {
