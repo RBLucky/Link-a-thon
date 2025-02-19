@@ -49,7 +49,7 @@ const ProjectCard = ({ post }: { post: ProjectCardType }) => {
 
         <Link href={`/project/${_id}`}>
             <p className="project-card_desc">{description}</p>
-            <img src={image} alt={`${title} project image`} className="project-card_img" />
+            <Image src={image} alt={`${title} project image`} className="project-card_img" />
         </Link>
 
         <div className="flex-between gap-3 mt-5">

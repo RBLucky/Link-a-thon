@@ -5,7 +5,6 @@ import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import markdownit from "markdown-it";
-import { Divider } from "sanity/structure";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
@@ -43,7 +42,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
       {/* Image Section */}
       <section className="section_container mt-[-20px]">
-        <img
+        <Image
           src={post.image}
           alt={`${post.title}'s representative image`}
           className="w-full rounded-xl object-cover h-[calc(100vh-250px)] md:h-[calc(100vh-300px)] image-no-min" 
@@ -65,7 +64,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                 <p className="text-20-medium">{post.author.name}</p>
                 <p className="text-16-medium !text-black-300">@{post.author.username}</p>
               </div>
-              
+
             </Link>
 
             <p className="category-tag">{post.category}</p>
