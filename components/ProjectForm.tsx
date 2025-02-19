@@ -7,11 +7,14 @@ import MDEditor from "@uiw/react-md-editor";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { formSchema } from "@/lib/validation";
+import { useToast } from "@/hooks/use-toast";
 
 const ProjectForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [pitch, setPitch] = useState<string>("This project is amazing because it...");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { toast } = useToast();
 
   // Dynamic Placeholder
   const placeholderText = [
@@ -59,13 +62,28 @@ const ProjectForm = () => {
 
     try {
       await formSchema.parseAsync(formValues);
+
       console.log("Form submitted successfully:", formValues);
+
+      toast({
+        title: "Success!",
+        description: "Your project pitch is ready for the world to see!.",
+        variant: "default",
+      });
     } catch (error: any) {
       const formattedErrors: Record<string, string> = {};
+
       for (const [key, messages] of Object.entries(error.formErrors?.fieldErrors || {})) {
         formattedErrors[key] = Array.isArray(messages) ? messages[0] : messages;
       }
+
       setErrors(formattedErrors);
+
+      toast({
+        title: "Error",
+        description: "Please check your inputs and try again.",
+        variant: "destructive",
+      })
     } finally {
       setIsSubmitting(false);
     }
