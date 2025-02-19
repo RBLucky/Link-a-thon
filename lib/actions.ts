@@ -25,7 +25,7 @@ export const createPitch = async (
   const slug = slugify(title as string, { lower: true, strict: true });
 
   try {
-    const startup = {
+    const project = {
       title,
       description,
       category,
@@ -41,7 +41,7 @@ export const createPitch = async (
       pitch,
     };
 
-    const result = await writeClient.create({ _type: "startup", ...startup });
+    const result = await writeClient.create({ _type: "project", ...project });
     
     return parseServerActionResponse({
       ...result,

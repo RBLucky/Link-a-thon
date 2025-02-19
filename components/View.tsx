@@ -11,6 +11,15 @@ const View = async ({ id }: { id: string }) => {
     .fetch(PROJECT_VIEWS_QUERY, { id });
 
   const formatNumber = (queryResult: number) => {
+
+    if (queryResult === null) {
+      queryResult = 0;
+
+      const viewInnerHTML = `${queryResult} Views`;
+      
+      return viewInnerHTML;
+    }
+
     if (queryResult === 1) {
         const viewInnerHTML = `${queryResult} View`;
         
