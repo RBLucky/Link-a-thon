@@ -33,7 +33,7 @@ const ProjectCard = ({ post }: { post: ProjectCardType }) => {
                 </Link>
 
                 <Link href={`/project/${_id}`}>
-                    <h3 className="text-26-semibold line-clamp-1">{title}</h3>
+                    <h3 className="text-26-semibold line-clamp-1 break-all">{title}</h3>
                 </Link>
             </div>
 
