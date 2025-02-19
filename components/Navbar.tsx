@@ -20,7 +20,7 @@ const Navbar = async () => {
                     <>
                       <Link href="/project/create">
                         <span className="max-sm:hidden">Create</span>
-                        <BadgePlus className="size-6 mt-[-6px] sm:hidden" />
+                        <BadgePlus className="size-6 mt-[-6px] sm:hidden text-tertiary" />
                       </Link>
 
                       <form action={ async() => {
