@@ -61,7 +61,11 @@ const ProjectForm = () => {
       await formSchema.parseAsync(formValues);
       console.log("Form submitted successfully:", formValues);
     } catch (error: any) {
-      setErrors(error.formErrors?.fieldErrors || {});
+      const formattedErrors: Record<string, string> = {};
+      for (const [key, messages] of Object.entries(error.formErrors?.fieldErrors || {})) {
+        formattedErrors[key] = Array.isArray(messages) ? messages[0] : messages;
+      }
+      setErrors(formattedErrors);
     } finally {
       setIsSubmitting(false);
     }
