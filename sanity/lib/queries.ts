@@ -58,3 +58,18 @@ export const AUTHOR_BY_ID_QUERY = defineQuery(`*[_type == "author" && _id == $id
   bio
   }`
 );
+
+export const PROJECTS_BY_AUTHOR_QUERY = defineQuery(`*[_type == "project" && author._ref == $id]| order(_createdAt desc){
+  _id,
+  title,
+  slug,
+  _createdAt,
+  author -> {
+    _id, name, image, bio
+  },
+  views,
+  description,
+  category,
+  image
+}`
+);

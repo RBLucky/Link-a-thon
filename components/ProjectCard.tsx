@@ -1,9 +1,10 @@
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Author, Project } from "@/sanity/types";
+import { Skeleton } from "./ui/skeleton";
 
 export type ProjectCardType = Omit<Project, "author"> & { author?: Author}
 
@@ -37,7 +38,12 @@ const ProjectCard = ({ post }: { post: ProjectCardType }) => {
             </div>
 
             <Link href={`/user/${author?._id}`}>
-                <Image src={author?.image} alt="avatar placeholder" width={48} height={48} className="rounded-full" />
+                <Image
+                    src={author?.image}
+                    alt={`${author?.name}'s display picture`}
+                    width={48} height={48}
+                    className="rounded-full"
+                />
             </Link>
         </div>
 
@@ -60,5 +66,15 @@ const ProjectCard = ({ post }: { post: ProjectCardType }) => {
     </li>
   )
 }
+
+export const ProjectCardSkeleton = () => (
+    <>
+        {[0, 1, 2, 3, 4].map((index: number) => (
+            <li key={cn("skeleton", index)}>
+                <Skeleton className="project-card_skeleton" />
+            </li>
+        ))}
+    </>
+)
 
 export default ProjectCard;
