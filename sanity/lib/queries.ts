@@ -31,10 +31,42 @@ export const PROJECT_QUERY = defineQuery(`*[_type == "project" && _id == $id][0]
 }`
 );
 
+export const RECOMMENDED_PROJECTS_QUERY = defineQuery(`*[_type == "project" && _id != $currentId] {
+  _id,
+  title,
+  slug,
+  _createdAt,
+  "score": select(
+    category == $category => 2,
+    0
+  ) + select(
+    author._ref == $authorId => 1.5,
+    0
+  ) + select(
+    dateTime(_createdAt) > dateTime(now()) - 60*60*24*30 => 1,
+    0
+  ) + select(
+    coalesce(views, 0) > 100 => 0.5,
+    0
+  ),
+  author-> {
+    _id,
+    name,
+    username,
+    image,
+    bio
+  },
+  views,
+  description,
+  category,
+  image
+} | order(score desc)[0...3]`
+);
+
 export const PROJECT_VIEWS_QUERY = defineQuery(`*[_type == "project" && _id == $id][0]{
   _id,
   views
-  }`
+}`
 );
 
 export const AUTHOR_BY_GITHUB_ID_QUERY = defineQuery(`*[_type == "author" && id == $id][0]{
@@ -45,7 +77,7 @@ export const AUTHOR_BY_GITHUB_ID_QUERY = defineQuery(`*[_type == "author" && id 
   email,
   image,
   bio
-  }`
+}`
 );
 
 export const AUTHOR_BY_ID_QUERY = defineQuery(`*[_type == "author" && _id == $id][0]{
@@ -56,7 +88,7 @@ export const AUTHOR_BY_ID_QUERY = defineQuery(`*[_type == "author" && _id == $id
   email,
   image,
   bio
-  }`
+}`
 );
 
 export const PROJECTS_BY_AUTHOR_QUERY = defineQuery(`*[_type == "project" && author._ref == $id]| order(_createdAt desc){
@@ -73,28 +105,3 @@ export const PROJECTS_BY_AUTHOR_QUERY = defineQuery(`*[_type == "project" && aut
   image
 }`
 );
-
-export const PLAYLIST_BY_SLUG_QUERY =
-  defineQuery(`*[_type == "playlist" && slug.current == $slug][0]{
-  _id,
-  title,
-  slug,
-  select[]->{
-    _id,
-    _createdAt,
-    title,
-    slug,
-    author->{
-      _id,
-      name,
-      slug,
-      image,
-      bio
-    },
-    views,
-    description,
-    category,
-    image,
-    pitch
-  }
-}`);
