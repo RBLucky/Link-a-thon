@@ -1,5 +1,5 @@
 import { client } from "@/sanity/lib/client";
-import { PROJECT_QUERY } from "@/sanity/lib/queries";
+import { PLAYLIST_BY_SLUG_QUERY, PROJECT_QUERY } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
@@ -9,6 +9,7 @@ import { Divider } from "sanity/structure";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
+import ProjectCard, { ProjectCardType } from "@/components/ProjectCard";
 
 const md = markdownit();
 
@@ -17,7 +18,10 @@ export const experimental_ppr = true;
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
 
-  const post = await client.fetch(PROJECT_QUERY, { id });
+  const [post, { select: editorPosts }] = await Promise.all([
+    client.fetch(PROJECT_QUERY, { id }),
+    client.fetch(PLAYLIST_BY_SLUG_QUERY, {slug: "you-might-love-these"})
+  ]);
 
   if (!post) return notFound();
 
@@ -80,6 +84,17 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
         <hr className="divider" />
         {/* TODO: You Might Love These */}
+        {editorPosts?.length > 0 && (
+          <div className="max-w-4xl mx-auto">
+            <p className="text-30-semibold">You Might Love These</p>
+
+            <ul className="mt-7 card_grid-sm">
+              {editorPosts.map((post: ProjectCardType, index: number) => (
+                <ProjectCard key={index} post={post} />
+              ))}
+            </ul>
+          </div>
+        )}
 
       </section>
 
