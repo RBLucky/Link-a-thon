@@ -3,8 +3,11 @@ import ProjectCard, { ProjectCardType } from "@/components/ProjectCard";
 import SearchForm from "@/components/SearchForm";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { PROJECTS_QUERY } from "@/sanity/lib/queries";
+import { unstable_noStore } from "next/cache";
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }>}) {
+
+  unstable_noStore();
 
   const query = (await searchParams).query;
 
@@ -14,7 +17,11 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
 
   console.log(`Session ID: ${session?.id}`);
 
-  const { data: posts } = await sanityFetch({ query: PROJECTS_QUERY, params })
+  const { data: posts } = await sanityFetch({
+    query: PROJECTS_QUERY,
+    params,
+    tags: ['project', 'views']
+  });
 
   return (
     <>
