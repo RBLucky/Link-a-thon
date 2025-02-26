@@ -26,7 +26,20 @@ const nextConfig: NextConfig = {
     appIsrStatus: true,
     buildActivity: true,
     buildActivityPosition: 'bottom-right'
-  }
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default withSentryConfig(nextConfig, {
