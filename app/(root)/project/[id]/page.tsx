@@ -42,7 +42,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
       {/* Image Section */}
       <section className="section_container mt-[-20px]">
-        <Image
+        <img
           src={post.image}
           alt={`${post.title}'s representative image`}
           className="w-full rounded-xl object-cover h-[calc(100vh-250px)] md:h-[calc(100vh-300px)] image-no-min" 
