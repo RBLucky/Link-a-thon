@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Link-a-thon
 
-## Getting Started
+🚀 **Link-a-thon** is a platform that connects developers by allowing them to view, search, and create project pitches to recruit talent. Users can log in seamlessly using GitHub OAuth, eliminating the need for manual account creation.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🔍 **Discover Projects** – Browse projects posted by other users.
+- 📝 **Create a Project Pitch** – Recruit talent for your own project.
+- 🔑 **GitHub OAuth Authentication** – No need to create an account, just log in with GitHub.
+- 🔎 **Advanced Search** – Find projects by name, creator, or category.
+- ⚡ **Modern Tech Stack** – Built with Next.js 15, Tailwind CSS, TypeScript, and Sanity CMS.
+
+## 🛠 Tech Stack
+
+- **Frontend**: Next.js 15, Tailwind CSS, TypeScript
+- **Backend & CMS**: Sanity
+- **Authentication**: GitHub OAuth
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+
+```sh
+git clone https://github.com/RBLucky/link-a-thon.git
+cd link-a-thon
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2️⃣ Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm install  # or yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3️⃣ Set Up Environment Variables
 
-## Learn More
+Create a `.env.local` file in the root directory and add the following:
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+NEXT_PUBLIC_GITHUB_CLIENT_ID=your_github_client_id
+NEXT_PUBLIC_GITHUB_CLIENT_SECRET=your_github_client_secret
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
+NEXT_PUBLIC_SANITY_DATASET=your_sanity_dataset
+AUTH_SECRET=your_auth_secret # Added by `npx auth`. Read more: https://cli.authjs.dev
+AUTH_GITHUB_ID=your_auth_github_id # Found on GitHub OAuth2
+AUTH_GITHUB_SECRET=your_github_secret
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Replace the placeholders with your actual credentials.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4️⃣ Run the Development Server
 
-## Deploy on Vercel
+```sh
+npm run dev  # or yarn dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The app will be available at **http://localhost:3000**.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📜 License
+
+This project is open-source and available under the **MIT License**.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork the repo, create a branch, and submit a PR.
+
+---
+
+💡 *Happy coding and welcome to Link-a-thon!*
